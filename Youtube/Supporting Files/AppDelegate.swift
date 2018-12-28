@@ -14,8 +14,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .horizontal
+        let home = HomeController(collectionViewLayout: layout)
+        
+        let navController = UINavigationController(rootViewController: home)
+        navController.navigationBar.isTranslucent = false
+        navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.barTintColor = ApplicationColor.primary
+        window?.rootViewController = navController
+        
+//        if let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView {
+//            statusBarView.backgroundColor = .white //ApplicationColor.primary
+//            statusBarView.alpha = 0.5
+//        }
+        
         return true
     }
 
